@@ -1,0 +1,18 @@
+{
+  "name": "@bysk/fifo-calc-converter",
+  "tasks": {
+    "compile": "deno compile --allow-read --allow-write --allow-env --allow-sys main.ts",
+    "dev": "denon run --allow-read --allow-write --allow-env --allow-sys main.ts"
+  },
+  "nodeModulesDir": "none",
+  "importMap": "./import_map.json",
+  "exports": {
+    ".": "./main.ts"
+  },
+  "fmt": {
+    "singleQuote": true,
+    "indentWidth": 2,
+    "lineWidth": 100,
+    "semiColons": false
+  }
+}

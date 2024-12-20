@@ -1,0 +1,10 @@
+{
+  "imports": {
+    "@std/csv/parse": "jsr:@std/csv/parse",
+    "@std/cli/parse-args": "jsr:@std/cli/parse-args",
+    "date-fns": "npm:date-fns@3.0.6",
+    "decimal.js": "npm:decimal.js@10.4.3",
+    "rambda": "npm:rambda@9.3.0",
+    "zod": "https://deno.land/x/zod@v3.23.8/mod.ts"
+  }
+}
