@@ -58,7 +58,7 @@ export const showUsageAndExit = (
   console.log('---------------------------------')
 
   if (exitWithError) {
-    console.error(`\nInvalid commandline options or arguments`)
+    console.error(`\nInvalid commandline options or arguments\n`)
   }
 
   console.log(usageString)

@@ -13,11 +13,11 @@ import { convertPionexTracker } from './src/pionexTracker.ts'
 import { convertPionexTrading } from './src/pionexTrading.ts'
 
 enum CONVERSION_TYPE {
-  HELP = 'help',
   BYBIT_SPOT_PRE_UNIFIED = 'bybit-spot-pre-unified',
   BYBIT_SPOT_UNIFIED = 'bybit-spot-unified',
   PIONEX_TRADING = 'pionex-trading',
   PIONEX_COIN_TRACKER = 'pionex-coin-tracker',
+  HELP = 'help',
 }
 
 const usage: Usage = {
