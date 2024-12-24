@@ -6,11 +6,11 @@ format compatible with the `fifo-calc` tool.
 `fifo-calc-converter` is part of the `fifo-calc` crypto suite, which consists of the following
 tools:
 
-| tool                  | description                                                                                                      |
-| --------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `fifo-calc`           | Creates FIFO reports based on buy and sell transactions to be used for reporting capital gains.                  |
-| `fifo-calc-converter` | Converts transaction (CSV) files from various crypto exchanges, to a format that can be imported by `fifo-calc`. |
-| `fifo-calc-rates`     | Creates currency rate files to be used with `fifo-calc-converter`.                                               |
+| tool                                                                      | description                                                                                                      |
+| ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| [fifo-calc](https://github.com/Byskov-Soft/fifo-calc)                     | Creates FIFO reports based on buy and sell transactions to be used for reporting capital gains.                  |
+| [fifo-calc-converter](https://github.com/Byskov-Soft/fifo-calc-converter) | Converts transaction (CSV) files from various crypto exchanges, to a format that can be imported by `fifo-calc`. |
+| [fifo-calc-rates](https://github.com/Byskov-Soft/fifo-calc-rates)         | Creates currency rate files to be used with `fifo-calc-converter`.                                               |
 
 ## When would I need this tool?
 
@@ -50,7 +50,8 @@ To extend the converter, you would need to:
 
 ## Fifo-calc input format
 
-The following is an example of the target format we want to convert to.
+The following is an example of the target format we want to convert to (the `fifo-calc` input
+format)
 
 ```csv
 t_currency,tax_currency,date,type,symbol,tcur_cost,item_count,tcur_conversion_rate,symbol_fee,tcur_fee
