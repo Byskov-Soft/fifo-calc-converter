@@ -23,6 +23,26 @@ than manually typing in the records.
 If you already have CSV files (or spreadsheets) with values close what is needed by `fifo-calc`, it
 may be simple to rearrange existing data, making this tool redundant.
 
+## Installation
+
+- Install the [Deno runtime](https://deno.com/)
+
+  If you are on Linux or Mac, using [DVM](https://deno.land/x/dvm@v1.9.1) (Deno version manager) is
+  recommended
+
+- Clone this [GitHub repository](https://github.com/Byskov-Soft/fifo-calc-converter.git):
+
+  `git clone https://github.com/Byskov-Soft/fifo-calc-converter.git`
+
+- Compile the binary:
+  ```
+  cd fifo-calc-converter
+  deno task compile
+  ```
+- Copy the compiled binary to a directory in your path
+
+  For example: `sudo cp ./fifo-calc-converter /usr/local/bin/`
+
 ## Usage
 
 ```
