@@ -21,7 +21,27 @@ than manually typing in the records.
 ## When would I NOT need this tool?
 
 If you already have CSV files (or spreadsheets) with values close what is needed by `fifo-calc`, it
-may be simple to rearrange existing data, amiking this tool redundant.
+may be simple to rearrange existing data, making this tool redundant.
+
+## Usage
+
+```
+Usage: fifo-calc-convert <command> <options>
+
+ Command : (bybit-spot-pre-unified | bybit-spot-unified | pionex-trading | pionex-coin-tracker | help)
+
+ Options:
+  [--t-currency <currency>]       : Transaction currency - defaults to USD
+
+  --tax-currency <currency>       : Taxable currency
+
+  (--fixed-rate <rate> |          : Used a fixed rate
+   --rate-file <rate-json-file>)    or a rate file
+
+  --input <input-csv-file>        : The file to convert
+
+  --output <output-csv-file>      : The output file
+```
 
 ## Supported Exchanges and exports
 
@@ -35,6 +55,11 @@ liquidity pools, etc. You would need somethings else besides the `fifo-calc` too
 | Bybit    | Pre-unified spot   | Spot trading from a "unified" account                                      |
 | Pionex   | Pionex trading     |                                                                            |
 | Pionex   | Pionex cointracker |                                                                            |
+
+## Rate files
+
+If you need rates for the taxable currency per transaction date, you may want to take a look at the
+[fifo-calc-rates](https://github.com/Byskov-Soft/fifo-calc-rates) tool.
 
 ## Extending fifo-calc-converter
 
