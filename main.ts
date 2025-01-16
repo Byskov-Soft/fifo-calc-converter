@@ -27,8 +27,8 @@ const usage: Usage = {
     'Options:',
     ' [--t-currency <currency>]       : Transaction currency - defaults to USD',
     ' --tax-currency <currency>       : Taxable currency',
-    ' (--fixed-rate <rate> |          : Used a fixed rate\n ' +
-    '  --rate-file <rate-json-file>)    or a rate file',
+    ' (--fixed-rate <rate> |          : Used a fixed rate or rate file\n ' +
+    '  --rate-file <rate-json-file>)    for taxable currency conversion',
     ' --input <input-csv-file>        : The file to convert',
     ' --output <output-csv-file>      : The output file',
   ],
