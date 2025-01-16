@@ -6,7 +6,7 @@ format compatible with the `fifo-calc` tool.
 `fifo-calc-converter` is part of the `fifo-calc` crypto suite, which consists of the following
 tools:
 
-| tool                                                                      | description                                                                                                      |
+| Tool                                                                      | Description                                                                                                      |
 | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | [fifo-calc](https://github.com/Byskov-Soft/fifo-calc)                     | Creates FIFO reports based on buy and sell transactions to be used for reporting capital gains.                  |
 | [fifo-calc-converter](https://github.com/Byskov-Soft/fifo-calc-converter) | Converts transaction (CSV) files from various crypto exchanges, to a format that can be imported by `fifo-calc`. |
@@ -14,9 +14,14 @@ tools:
 
 ## When would I need this tool?
 
-It is pretty much guaranteed that none of the exports from crypto exchanges are compatible with
+It is pretty much guaranteed that all of the exports from crypto exchanges are incompatible with
 `fifo-calc`, so if you have many transactions, using a conversion tool like this is likely better
 than manually typing in the records.
+
+**IMPORTANT:** It should be said that if you are not a software engineer `fifo-calc-converter` is
+probably useless to you. Only few conversions are supported, so you would likely have to create your
+own, by using the existing ones as example. See details from the
+[Extending fifo-calc-converter](#extending-fifo-calc-converter) section below.
 
 ## When would I NOT need this tool?
 
@@ -55,8 +60,8 @@ Usage: fifo-calc-convert <command> <options>
 
   --tax-currency <currency>       : Taxable currency
 
-  (--fixed-rate <rate> |          : Used a fixed rate
-   --rate-file <rate-json-file>)    or a rate file
+  (--fixed-rate <rate> |          : Used a fixed rate or rate file
+   --rate-file <rate-json-file>)    for taxable currency conversion
 
   --input <input-csv-file>        : The file to convert
 
@@ -78,13 +83,27 @@ liquidity pools, etc. You would need somethings else besides the `fifo-calc` too
 
 ## Rate files
 
-If you need rates for the taxable currency per transaction date, you may want to take a look at the
-[fifo-calc-rates](https://github.com/Byskov-Soft/fifo-calc-rates) tool.
+If you are not using a fixed rate to convert to the taxable currency (e.g. USD to EUR), but need the
+rate on the date of each transaction, you must provide a rate file.
+
+Example contents of a EUR/USD rate file. Each line contains the USD cost of one EUR on specific
+days.
+
+```
+{
+  "2024-01-01": 1.105,
+  "2024-01-02": 1.0956,
+  "2024-01-03": 1.0919,
+  "2024-01-04": 1.0953,
+  "2024-01-05": 1.0921,
+  ...
+}
+```
 
 ## Extending fifo-calc-converter
 
-Currently only few exchanges and export types are supported. If you, however, know basic
-programming, it should be simple to clone this repository and create a converter for your needs.
+If you know basic programming, it should be simple to clone this repository and create a converter
+for your needs.
 
 To extend the converter, you would need to:
 
@@ -106,15 +125,15 @@ USD,EUR,2024-09-25T05:41:22.000Z,S,RENDER,49.059,7.9,1.1194,0,0.049059
 
 Column descriptions
 
-| Column               | Description                                                                                                                                                                                                                              |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| t_currency           | Transaction currency                                                                                                                                                                                                                     |
-| tax_currency         | Taxable currency                                                                                                                                                                                                                         |
-| date                 | When did you buy or sell? Different date formats will work as long as they can be parsed by JavaScript. Preferably use an ISO format such as `YYYY-MM-DD HH:mm:ss`                                                                       |
-| type                 | Transaction type: B = Buy, S = Sell                                                                                                                                                                                                      |
-| symbol               | What did you buy? BTC, SOL, etc                                                                                                                                                                                                          |
-| tcur_cost            | What was the price (fee excluded) of the purchase in the transaction currency?                                                                                                                                                           |
-| item_count           | How many did you buy (this may be fractional)?                                                                                                                                                                                           |
-| tcur_conversion_rate | How much did the taxable current cost in the transaction currency on the transaction date? Example: on `October 17th 2024` the cost of `1 EUR` was `1.0866 USD`. If the transaction currency and taxable currency are the same, put `1`. |
-| symbol_fee           | Eventual fee in the "symbol" currency or "0"                                                                                                                                                                                             |
-| tcur_fee             | Eventual fee in the transaction currency or "0"                                                                                                                                                                                          |
+| Column               | Description                                                                                                                                                                                                                                |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| t_currency           | Transaction currency                                                                                                                                                                                                                       |
+| tax_currency         | Taxable currency                                                                                                                                                                                                                           |
+| date                 | When did you buy or sell? Different date formats will work as long as they can be parsed by JavaScript. Preferably use an ISO format such as `YYYY-MM-DD HH:mm:ss`                                                                         |
+| type                 | Transaction type: B = Buy, S = Sell                                                                                                                                                                                                        |
+| symbol               | What did you buy? BTC, SOL, etc                                                                                                                                                                                                            |
+| tcur_cost            | What was the price (fee excluded) of the purchase in the transaction currency?                                                                                                                                                             |
+| item_count           | How many did you buy (this may be fractional)?                                                                                                                                                                                             |
+| tcur_conversion_rate | How much did the taxable currentcy cost in the transaction currency on the transaction date? Example: on `October 17th 2024` the cost of `1 EUR` was `1.0866 USD`. If the transaction currency and taxable currency are the same, put `1`. |
+| symbol_fee           | Eventual fee in the "symbol" currency or "0"                                                                                                                                                                                               |
+| tcur_fee             | Eventual fee in the transaction currency or "0"                                                                                                                                                                                            |
