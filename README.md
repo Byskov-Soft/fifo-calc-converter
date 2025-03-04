@@ -3,14 +3,31 @@
 A commandline tool for converting transaction files (in CSV format) from crypto exchanges to a
 format compatible with the `fifo-calc` tool.
 
-`fifo-calc-converter` is part of the `fifo-calc` crypto suite, which consists of the following
-tools:
+## Fifo-calc crypto suite
+
+`fifo-calc` is part of a "crypto suite", consisting of the following tools:
 
 | Tool                                                                      | Description                                                                                                      |
 | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | [fifo-calc](https://github.com/Byskov-Soft/fifo-calc)                     | Creates FIFO reports based on buy and sell transactions to be used for reporting capital gains.                  |
 | [fifo-calc-converter](https://github.com/Byskov-Soft/fifo-calc-converter) | Converts transaction (CSV) files from various crypto exchanges, to a format that can be imported by `fifo-calc`. |
 | [fifo-calc-rates](https://github.com/Byskov-Soft/fifo-calc-rates)         | Creates currency rate files to be used with `fifo-calc-converter`.                                               |
+
+Here's how the tools work together:
+
+1. **fifo-calc-rates** creates a JSON file of daily conversion rates for a full year.
+   - It currently supports USD to EUR.
+2. **fifo-calc-converter** converts exchange records using:
+   - A fixed conversion rate, or
+   - A rate list (from `fifo-calc-rates` or manually created) having a rate for each day in the year
+   to convert exchange-specific CSV files into fifo-calc compatible format
+3. **fifo-calc** imports either:
+   - The converted files from fifo-calc-converter, or
+   - Manually created records
+
+You can use these tools independently or as part of a complete workflow, depending on your needs.
+Please see the [fifo-calc README](https://github.com/Byskov-Soft/fifo-calc) to more details about
+the goals and design of the suite.
 
 ## When would I need this tool?
 
